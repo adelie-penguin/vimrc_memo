@@ -99,9 +99,11 @@ vim.opt.statusline = [[%!v:lua.PenguinStatusline()]]
 
 function PenguinStatusline()
 
+	local weeks = {"日", "月", "火", "水", "木", "金", "土"}
+	local r1_m  = string.format("%s(%s) %s", os.date("%Y/%m/%d"), weeks[os.date("*t").wday], os.date("%H:%M"))
+
 	local l1_h = '%#IncSearch#'
 	local l1_m = ' NORMAL '
-	local r1_m = os.date("%Y/%m/%d(%H:%M)")
 
 	if vim.api.nvim_get_mode().mode == 'i' then
 		l1_h = '%#CurSearch#'
